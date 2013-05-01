@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1" />
+    <title>AMD modules</title>
+    <script>
+        console.time('page');
+        console.time('module');
+    </script>
+    <script src="js-old/base/app.min.js"></script>
+</head>
+<body>
+    
+    <div id="carousel1"></div>
+    <script>
+        app.reg('carousel1', 'Carousel', { option: 'example', hello: 1 });
+    </script>
+    
+    <div id="carousel2"></div>
+    <script>
+        app.reg('carousel2', 'Carousel', { option: 'example2' });
+    </script>
+    
+    <div>
+        <p>1.9KB - app.min.js</p>
+        <p>0.6KB - Carousel.js</p>
+        <p>2.5KB - Total</p>
+    </div>
+    
+    <script src="js-old/assets/Carousel.js"></script>
+    <script>
+        app.init();
+    </script>
+    <script>
+        console.timeEnd('page');
+    </script>
+</body>
+</html>
