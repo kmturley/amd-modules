@@ -3,20 +3,14 @@
     example module
 */
 
-define('Carousel', function() {
-
-    var Module = function(id, options) {
-        this.el = document.getElementById(id);
-        this.options = options;
-        this.init();
-    }
-
-    Module.prototype = {
+define('Carousel', ['Utils', 'Child'], function(Utils, Child) {
+    return Utils.create(Child, {
         init: function() {
-            console.log('Carousel.init', this);
-            console.timeEnd('module');
+            console.log('Carousel', this);
+        },
+        carouselfunc: function() {
+            console.log('Carouselfunc', this);
         }
-    }
-
-    return Module;
+    });
+    
 });

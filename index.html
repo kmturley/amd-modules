@@ -16,6 +16,7 @@
     <script>
         require(['Carousel'], function(Carousel) {
             var carousel1 = new Carousel('carousel1', { option: 'example', hello: 1 });
+            window.carousel1 = carousel1;
         });
     </script>
     
@@ -23,6 +24,7 @@
     <script>
         require(['Carousel'], function(Carousel) {
             var carousel2 = new Carousel('carousel2', { option: 'example2' });
+            window.carousel2 = carousel2;
         });
     </script>
     
@@ -31,7 +33,9 @@
         <p>0.7KB - Carousel.js</p>
         <p>3.5KB - Total</p>
     </div>
-    
+
+    <script src="js/assets/Utils.js"></script>
+    <script src="js/assets/Child.js"></script>
     <script src="js/assets/Carousel.js"></script>
     <script>
         console.timeEnd('page');
