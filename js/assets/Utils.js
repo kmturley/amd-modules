@@ -46,9 +46,14 @@ define('Utils', function() {
 			return o;
 		},
 		create: function(obj, module) {
-			var me = this,
-				proto = this.extend(this.clone(obj, module));
-
+			var me = this;
+			if (arguments.length > 1) {
+				module = this.extend(this.clone(obj), module);
+				module.superclass = obj;
+			}
+			else {
+				module = obj;
+			}
 			function Module(id, options) {
 				this.el = me.getEl(id);
 				this.options = me.extend(this.options, options);
@@ -56,8 +61,7 @@ define('Utils', function() {
 					this.init();
 				}
 			}
-			proto.superclass = obj;
-			Module.prototype = proto;
+			Module.prototype = module;
 			return Module;
 		}
 	};
