@@ -54,8 +54,10 @@ define('Utils', function() {
 			else {
 				module = obj;
 			}
-			function Module(id, options) {
+			function Module(id, tmpl, options) {
 				this.el = me.getEl(id);
+				this.tmpl = tmpl ? tmpl : 'tmpl' + id.charAt(0).toUpperCase() + id.replace(/^([A-Za-z])([A-Za-z]+)\d$/, "$2");
+				console.log(this.tmpl);
 				this.options = me.extend(this.options, options);
 				if (this.init) {
 					this.init();
@@ -63,6 +65,16 @@ define('Utils', function() {
 			}
 			Module.prototype = module;
 			return Module;
+		},
+		render: function(id, data) {
+			var tmpl = this.getEl(id).innerHTML;
+			return twig({
+				data: tmpl
+			})
+			.render({
+				item: data,
+				lang: {}
+			});
 		}
 	};
 });

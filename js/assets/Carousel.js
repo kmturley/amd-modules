@@ -4,12 +4,14 @@
  */
 
 define('Carousel', ['Utils', 'Child'], function(Utils, Child) {
+
 	return Utils.create(Child, {
 		init: function() {
-			console.log('Carousel', this);
+			//console.log('Carousel', this);
 		},
-		carouselfunc: function() {
-			console.log('Carouselfunc', this);
+		render: function(params) {
+			this.el.innerHTML = Utils.render(this.tmpl, params);
+			return false;
 		}
 	});
 });
