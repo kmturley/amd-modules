@@ -11,7 +11,6 @@ define('Carousel', ['Utils', 'Child'], function(Utils, Child) {
 		},
 		render: function(params) {
 			this.el.innerHTML = Utils.render(this.tmpl, params);
-			return false;
 		}
 	});
 });

@@ -54,11 +54,10 @@ define('Utils', function() {
 			else {
 				module = obj;
 			}
-			function Module(id, tmpl, options) {
+			function Module(id, options) {
 				this.el = me.getEl(id);
-				this.tmpl = tmpl ? tmpl : 'tmpl' + id.charAt(0).toUpperCase() + id.replace(/^([A-Za-z])([A-Za-z]+)\d$/, "$2");
-				console.log(this.tmpl);
 				this.options = me.extend(this.options, options);
+				this.tmpl = me.getEl(this.options.tmpl);
 				if (this.init) {
 					this.init();
 				}

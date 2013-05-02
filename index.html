@@ -1,51 +1,63 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1" />
-    <title>AMD modules</title>
-    <script>
-        console.time('page');
-        console.time('module');
-    </script>
-    <script src="js/base/almond.min.js"></script>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1" />
+	<title>AMD modules</title>
+	<script src="js/base/almond.min.js"></script>
+	<script>
+		window.app = {};
+	</script>
 </head>
 <body>
-    
-    <div id="carousel1"></div>
-    <script>
-        require(['Carousel'], function(Carousel) {
-            var carousel1 = new Carousel('carousel1', 'tmplCarousel', { hello: 1 });
-			carousel1.render({ name: 'Carousel1' });
-            window.carousel1 = carousel1;
-        });
-    </script>
-    
-    <div id="carousel2"></div>
+	<div id="carousel1"></div>
 	<script>
-        require(['Carousel'], function(Carousel) {
-			var carousel2 = new Carousel('carousel2');
-			carousel2.render({ name: 'Carousel2' });
-            window.carousel2 = carousel2;
-        });
+		// example of module that renders and is self contained
+		require(['Carousel'], function(Carousel) {
+			new Carousel('carousel1', { tmpl: 'tmplCarousel', hello: 1 })
+			.render({ name:'Inline render' });
+		});
+	</script>
+    
+	<div id="carousel2"></div>
+	<script>
+		// example of module that is added to namespaced object
+		require(['Carousel'], function(Carousel) {
+			window.app.carousel2 = new Carousel('carousel2', { tmpl:'tmplCarousel' });
+		});
 	</script>
 
-    <div>
-        <p>2.8KB - almond.min.js</p>
-        <p>0.7KB - Carousel.js</p>
-        <p>3.5KB - Total</p>
-    </div>
+	<div id="singleton"></div>
+	<script>
+		// can use standard AMD files
+		require(['Singleton'], function(s) {
+			s.init();
+		});
+	</script>
+
+	<div>
+		<p>2.8KB - almond.min.js</p>
+		<p>0.7KB - Carousel.js</p>
+		<p>3.5KB - Total</p>
+	</div>
 
 	<script id="tmplCarousel" type="text/template">
 		<h1>{{ item.name }}</h1>
 	</script>
 
-    <script src="js/assets/Utils.js"></script>
-    <script src="js/assets/Child.js"></script>
-    <script src="js/assets/Carousel.js"></script>
+	<!-- start of file to be minified -->
+	<script src="js/assets/Utils.js"></script>
+	<script src="js/assets/Child.js"></script>
+	<script src="js/assets/Carousel.js"></script>
+	<script src="js/assets/Singleton.js"></script>
 	<script src="js/base/twig.min.js"></script>
-    <script>
-        console.timeEnd('page');
-    </script>
+	<!-- end of minified file -->
+
+	<script>
+		require(['Carousel'], function() {
+			window.app.carousel2.render({ name:'End of page render' });
+		});
+	</script>
+
 </body>
 </html>
