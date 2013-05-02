@@ -29,21 +29,27 @@
 
 	<div id="singleton"></div>
 	<script>
-		// can use standard AMD files
-		require(['Singleton'], function(s) {
-			s.init();
-		});
+		require(['Singleton'], function(s) { s.init(); }); // works with standard AMD files
 	</script>
 
 	<div>
-		<p>2.8KB - almond.min.js</p>
-		<p>0.7KB - Carousel.js</p>
-		<p>3.5KB - Total</p>
+		<table>
+			<tr><td>2.51 KB</td><td>almond.min.js</td></tr>
+			<tr><td>1.38 KB</td><td>Utils.js</td></tr>
+			<tr><td>0.20 KB</td><td>Child.js</td></tr>
+			<tr><td>0.29 KB</td><td>Carousel.js</td></tr>
+			<tr><td>0.14 KB</td><td>Singleton.js</td></tr>
+			<tr><td>4.52 KB</td><td>Sub-total</td></tr>
+			<tr><td>47.82 KB</td><td>twig.min.js</td></tr>
+			<tr><td>52.34 KB</td><td>Grand total</td></tr>
+		</table>
 	</div>
 
+	<!-- templates -->
 	<script id="tmplCarousel" type="text/template">
 		<h1>{{ item.name }}</h1>
 	</script>
+	<!-- end of templates -->
 
 	<!-- start of file to be minified -->
 	<script src="js/assets/Utils.js"></script>
