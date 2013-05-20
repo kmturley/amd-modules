@@ -5,65 +5,40 @@
 	<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1" />
 	<title>AMD modules</title>
 	<script src="js/base/almond.min.js"></script>
-	<script>
-		window.app = {};
-	</script>
 </head>
 <body>
-	<div id="carousel1"></div>
-	<script>
-		// example of module that renders and is self contained
-		require(['Carousel'], function(Carousel) {
-			new Carousel('carousel1', { tmpl: 'tmplCarousel', hello: 1 })
-			.render({ name:'Inline render' });
-		});
-	</script>
+    <table>
+        <tr><td>2.7 KB</td><td>almond.min.js</td></tr>
+        <tr><td>65.5 KB</td><td>plate.min.js</td></tr>
+        <tr><td>0.5 KB</td><td>class.min.js</td></tr>
+        <tr><td>0.7 KB</td><td>Child.js</td></tr>
+        <tr><td>0.5 KB</td><td>Parent.js</td></tr>
+        <tr><td>69.9 KB</td><td>Total</td></tr>
+    </table>
+    <div id="area1">Area1 placeholder</div>
+    <div id="area2">Area2 placeholder</div>
     
-	<div id="carousel2"></div>
-	<script>
-		// example of module that is added to namespaced object
-		require(['Carousel'], function(Carousel) {
-			window.app.carousel2 = new Carousel('carousel2', { tmpl:'tmplCarousel' });
-		});
-	</script>
-
-	<div id="singleton"></div>
-	<script>
-		require(['Singleton'], function(s) { s.init(); }); // works with standard AMD files
-	</script>
-
-	<div>
-		<table>
-			<tr><td>2.51 KB</td><td>almond.min.js</td></tr>
-			<tr><td>1.38 KB</td><td>Utils.js</td></tr>
-			<tr><td>0.20 KB</td><td>Child.js</td></tr>
-			<tr><td>0.29 KB</td><td>Carousel.js</td></tr>
-			<tr><td>0.14 KB</td><td>Singleton.js</td></tr>
-			<tr><td>4.52 KB</td><td>Sub-total</td></tr>
-			<tr><td>47.82 KB</td><td>twig.min.js</td></tr>
-			<tr><td>52.34 KB</td><td>Grand total</td></tr>
-		</table>
-	</div>
-
-	<!-- templates -->
-	<script id="tmplCarousel" type="text/template">
-		<h1>{{ item.name }}</h1>
-	</script>
-	<!-- end of templates -->
-
-	<!-- start of file to be minified -->
-	<script src="js/assets/Utils.js"></script>
-	<script src="js/assets/Child.js"></script>
-	<script src="js/assets/Carousel.js"></script>
-	<script src="js/assets/Singleton.js"></script>
-	<script src="js/base/twig.min.js"></script>
-	<!-- end of minified file -->
-
-	<script>
-		require(['Carousel'], function() {
-			window.app.carousel2.render({ name:'End of page render' });
-		});
-	</script>
-
+    <script id="tmplChild" type="text/template">
+        <h1>Child: {{ item.name }}</h1>
+    </script>
+    <script id="tmplParent" type="text/template">
+        <h1>Parent: {{ item.name }}</h1>
+    </script>
+    
+    <script src="js/base/plate.min.js"></script>
+    <script src="js/base/class.min.js"></script>
+    <script src="js/includes/Child.js"></script>
+    <script src="js/includes/Parent.js"></script>
+    <script>
+        require(['Child', 'Parent'], function(Child, Parent) {
+            var p = new Child('area1', { item: { name: 'child option'} });
+            p.render();
+            console.log('Child', p);
+            
+            var n = new Parent('area2', { item: { name: 'parent option'} });
+            n.render();
+            console.log('Parent', n);
+        });
+    </script>
 </body>
 </html>
