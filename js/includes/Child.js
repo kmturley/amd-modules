@@ -5,20 +5,16 @@
  * example module
 */
 
-define('Child', ['plate'], function (plate) {
+define('Child', function () {
     'use strict';
     return Class.extend({
         name: 'Child',
         init: function (id, options) {
             this.el = document.getElementById(id);
-            this.tmpl = document.getElementById('tmpl' + this.name).innerHTML;
             this.options = options;
         },
         render: function () {
-            var me = this;
-            new plate.Template(this.tmpl).render(this.options, function (e, html) {
-                me.el.innerHTML = html;
-            });
+            this.el.innerHTML = this.name + ' = ' + JSON.stringify(this.options);
         },
         childMethod: function () {
             return true;
