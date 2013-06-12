@@ -4,30 +4,33 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1" />
 	<title>AMD modules</title>
-	<script src="js/base/almond.min.js"></script>
+	
 </head>
 <body>
-    <table>
-        <tr><td>2.7 KB</td><td>almond.min.js</td></tr>
-        <tr><td>0.5 KB</td><td>class.min.js</td></tr>
-        <tr><td>0.7 KB</td><td>Child.js</td></tr>
-        <tr><td>0.5 KB</td><td>Parent.js</td></tr>
-        <tr><td>4.4 KB</td><td>Total</td></tr>
-    </table>
     <div id="area1">Area1 placeholder</div>
     <div id="area2">Area2 placeholder</div>
-
-    <script src="js/base/class.min.js"></script>
+    
+    <table>
+        <tr><td>2.7 KB</td><td>almond.min.js</td></tr>
+        <tr><td>1.9 KB</td><td>Class.js</td></tr>
+        <tr><td>0.7 KB</td><td>Child.js</td></tr>
+        <tr><td>0.5 KB</td><td>Parent.js</td></tr>
+        <tr><td>5.8 KB</td><td>Total</td></tr>
+    </table>
+    
+    <script src="js/base/almond.min.js"></script>
+    <script src="js/includes/Class.js"></script>
     <script src="js/includes/Child.js"></script>
     <script src="js/includes/Parent.js"></script>
     <script>
         require(['Child', 'Parent'], function(Child, Parent) {
-            var p = new Child('area1', { item: { name: 'child option'} });
-            p.render();
-            console.log('Child', p);
+            var p = new Child('area1', { item: { name: 'child option'} }),
+                n = new Parent('area2', { item: { name: 'parent option'} });
             
-            var n = new Parent('area2', { item: { name: 'parent option'} });
+            p.render();
             n.render();
+            
+            console.log('Child', p);
             console.log('Parent', n);
         });
     </script>
