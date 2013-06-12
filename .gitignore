@@ -1,0 +1,11 @@
+/nbproject/private/
+
+# Eclipse project
+.project
+
+/src/js/includes/.DS_Store
+/src/css/views/.DS_Store
+/css/.DS_Store
+.DS_Store
+/bin/js/.DS_Store
+/bin/csv/.DS_Store
