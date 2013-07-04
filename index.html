@@ -20,18 +20,24 @@
     
     <script src="js/base/almond.min.js"></script>
     <script src="js/includes/Class.js"></script>
+    <script src="js/includes/Events.js"></script>
     <script src="js/includes/Child.js"></script>
     <script src="js/includes/Parent.js"></script>
     <script>
         require(['Child', 'Parent'], function(Child, Parent) {
-            var p = new Child('area1', { item: { name: 'child option'} }),
-                n = new Parent('area2', { item: { name: 'parent option'} });
+            var c = new Child('area1', { item: { name: 'child option'} }),
+                p = new Parent('area2', { item: { name: 'parent option'} });
             
+            // example event
+            c.addEvent('click', function(e) {
+                console.log('event triggered!', e);
+            });
+            
+            c.render();
             p.render();
-            n.render();
             
-            console.log('Child', p);
-            console.log('Parent', n);
+            console.log('Child', c);
+            console.log('Parent', p);
         });
     </script>
 </body>

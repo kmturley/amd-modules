@@ -8,7 +8,7 @@
 
 define('Parent', ['Child'], function (Child) {
     'use strict';
-
+    
     return Child.extend({
         name: 'Parent',
         init: function (id, options) {

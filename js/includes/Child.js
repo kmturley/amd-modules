@@ -6,13 +6,17 @@
  * example module
 */
 
-define('Child', ['Class'], function (Class) {
+define('Child', ['Events'], function (Events) {
     'use strict';
     
-    return Class.extend({
+    return Events.extend({
         name: 'Child',
         init: function (id, options) {
+            var me = this;
             this.el = document.getElementById(id);
+            this.el.addEventListener('click', function (e) {
+                me.dispatchEvent('click', { value: 'something' });
+            }, false);
             this.options = options;
             this.render();
         },
