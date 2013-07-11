@@ -34,6 +34,17 @@ define('Events', ['Class'], function (Class) {
                     this.events[name][i]({ data: data, target: this, type: name});
                 }
             }
-        }
+        },
+		on: function(el, event, func) {
+			if (el.addEventListener) {
+				el.addEventListener(event, function (e) {
+					func(e, el)
+				}, false);
+			} else {
+				el.attachEvent('on' + event, function (e) {
+					func(e, el)
+				}, false);
+			}
+		}
     });
 });
