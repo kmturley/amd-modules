@@ -25,8 +25,8 @@
     <script src="js/includes/Parent.js"></script>
     <script>
         require(['Child', 'Parent'], function(Child, Parent) {
-            var c = new Child('area1', { item: { name: 'child option'} }),
-                p = new Parent('area2', { item: { name: 'parent option'} });
+            var c = new Child('area1', { item: { name: 'child option', child:1} }),
+                p = new Parent('area2', { item: { name: 'parent option', parent:2} });
             
             // example event
             c.addEvent('click', function(e) {
