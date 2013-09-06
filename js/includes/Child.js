@@ -14,8 +14,8 @@ define('Child', ['Events'], function (Events) {
         init: function (id, options) {
             var me = this;
             this.el = document.getElementById(id);
-            this.on(this.el, 'click', function (e) {
-                me.dispatchEvent('click', { value: 'something' });
+            this.add(this.el, 'click', function (e) {
+                me.emit('click', { value: 'something' });
             });
             this.options = options;
             this.render();

@@ -20,14 +20,21 @@
 
 define('Class', function () {
 	'use strict';
-
+    
+    /**
+     * @private
+     * @cfg {Boolean} initializing - is true while new instance is being created
+     * @cfg {Function} fnTest - Testing if the super parent exists
+     * @cfg {Function} Class - The base Class function
+     */
     var initializing = false,
-        fnTest = /xyz/.test(function () { var xyz; }) ? /\b_super\b/ : /[\D|\d]*/;
-    
-    // The base Class implementation (does nothing)
-    window.Class = function () { };
-    
-    // Create a new Class that inherits from this class
+        fnTest = /xyz/.test(function () { var xyz; }) ? /\b_super\b/ : /[\D|\d]*/,
+        Class = function () { };
+  
+    /**
+     * @method extend - Create a new Class that inherits from this class
+     * @param {Object} prop - Object containing prototype of the class
+     */
     Class.extend = function ext(prop) {
         var _super = this.prototype,
             name = '',

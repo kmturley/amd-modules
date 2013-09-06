@@ -4,7 +4,6 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1" />
 	<title>AMD modules</title>
-	
 </head>
 <body>
     <div id="area1">Area1 placeholder</div>
@@ -29,7 +28,7 @@
                 p = new Parent('area2', { item: { name: 'parent option', parent:2} });
             
             // example event
-            c.addEvent('click', function(e) {
+            c.on('click', function(e) {
                 console.log('event triggered!', e);
             });
             

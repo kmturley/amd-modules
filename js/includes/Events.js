@@ -11,11 +11,11 @@ define('Events', ['Class'], function (Class) {
     
     return Class.extend({
         events: {},
-        addEvent: function (name, callback) {
+        on: function (name, callback) {
             if (!this.events[name]) { this.events[name] = []; }
             this.events[name].push(callback);
         },
-        removeEvent: function (name, callback) {
+        off: function (name, callback) {
             var i = 0;
             if (this.events[name]) {
                 if (callback) {
@@ -27,7 +27,7 @@ define('Events', ['Class'], function (Class) {
                 }
             }
         },
-        dispatchEvent: function (name, data) {
+        emit: function (name, data) {
             var i = 0;
             if (this.events[name]) {
                 for (i = 0; i < this.events[name].length; i += 1) {
@@ -35,14 +35,14 @@ define('Events', ['Class'], function (Class) {
                 }
             }
         },
-		on: function(el, event, func) {
+		add: function (el, event, func) {
 			if (el.addEventListener) {
 				el.addEventListener(event, function (e) {
-					func(e, el)
+					func(e, el);
 				}, false);
 			} else {
 				el.attachEvent('on' + event, function (e) {
-					func(e, el)
+					func(e, el);
 				}, false);
 			}
 		}
